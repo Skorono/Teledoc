@@ -1,0 +1,21 @@
+﻿services:
+  teledoc.api:
+    image: teledoc.api
+    build:
+      context: .
+      dockerfile: Teledoc.API/Dockerfile
+    depends_on:
+      - postgres
+    environment:
+      - AUTH_PASSWORD=3911391a-f3e8-4dcf-abda-3556a16a16bb
+      - ASPNETCORE_ENVIRONMENT=Development
+  
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "TeledocDB"
+    ports:
+      - "5432:5432"

@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teledoc.API", "Teledoc.API\Teledoc.API.csproj", "{C399AB81-810C-492E-9B0C-B1878E9D0676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teledoc.Core", "Teledoc.Core\Teledoc.Core.csproj", "{8ED8CB98-27E9-4CF1-823C-446D49038AB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Teledoc.DAL", "Teledoc.DAL\Teledoc.DAL.csproj", "{86AEBE8A-56FB-4DE2-B203-198DA66CAD20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B06EF87-1FBC-4340-85C7-4ED6BFFBF95F}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C399AB81-810C-492E-9B0C-B1878E9D0676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C399AB81-810C-492E-9B0C-B1878E9D0676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C399AB81-810C-492E-9B0C-B1878E9D0676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C399AB81-810C-492E-9B0C-B1878E9D0676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ED8CB98-27E9-4CF1-823C-446D49038AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ED8CB98-27E9-4CF1-823C-446D49038AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ED8CB98-27E9-4CF1-823C-446D49038AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ED8CB98-27E9-4CF1-823C-446D49038AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86AEBE8A-56FB-4DE2-B203-198DA66CAD20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86AEBE8A-56FB-4DE2-B203-198DA66CAD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86AEBE8A-56FB-4DE2-B203-198DA66CAD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86AEBE8A-56FB-4DE2-B203-198DA66CAD20}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

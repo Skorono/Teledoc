@@ -15,7 +15,7 @@ public class Client
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime? UpdateAt { get; set; }
 
-    [ForeignKey("ClientTypeId")] public ClientType? Type { get; set; }
+    [ForeignKey("ClientTypeId")] public ClientType? Type { get; set; } = null;
 
-    public virtual IEnumerable<Founder>? Founders { get; set; } = null!;
+    public virtual IEnumerable<Founder> Founders { get; set; } = new List<Founder>();
 }

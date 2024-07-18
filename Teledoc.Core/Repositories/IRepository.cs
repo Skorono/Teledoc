@@ -15,14 +15,14 @@ public interface IRepository<T>
 
     public Task RemoveAsync(T entity);
 
-    public T Get(int id);
+    public T? Get(int id);
     public IEnumerable<T> Get();
 
-    public IEnumerable<T> Get(Func<T, bool> predicate);
+    public IEnumerable<T?> Get(Func<T, bool> predicate);
 
-    public Task<T> GetAsync(int id);
+    public Task<T?> GetAsync(int id);
 
     public Task<IEnumerable<T>> GetAsync();
 
-    public Task<IEnumerable<T>> GetAsync(Func<T, bool> predicate);
+    public Task<IEnumerable<T>?> GetAsync(Func<T, bool> predicate);
 }

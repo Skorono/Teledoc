@@ -22,8 +22,7 @@ public abstract class EntityRepository<TEntity> : IRepository<TEntity>
     public virtual void Add(TEntity entity)
     {
         if (DbSet.Contains(entity))
-            ThrowException(new EntityAlreadyExists($"{entity} already exists in {nameof(DbSet.EntityType)} table"),
-                "Failed to add entity");
+            throw new EntityAlreadyExists($"{entity} already exists in {nameof(DbSet.EntityType)} table");
 
         DbSet.Add(entity);
         Save($"Entity {nameof(entity)} successfully added");
@@ -62,14 +61,14 @@ public abstract class EntityRepository<TEntity> : IRepository<TEntity>
         await Task.Factory.StartNew(() => Remove(entity));
     }
 
-    public TEntity Get(int id)
+    public virtual TEntity? Get(int id)
     {
         var entity = DbSet.Find(id);
 
         if (entity == null)
-            ThrowException(new EntityNotFound(""), "failed to find entity");
+            throw new EntityNotFound("failed to find entity");
 
-        return entity!;
+        return entity;
     }
 
     public virtual IEnumerable<TEntity> Get()
@@ -77,14 +76,14 @@ public abstract class EntityRepository<TEntity> : IRepository<TEntity>
         return DbSet.AsNoTracking();
     }
 
-    public virtual IEnumerable<TEntity> Get(Func<TEntity, bool> predicate)
+    public virtual IEnumerable<TEntity?> Get(Func<TEntity, bool> predicate)
     {
         return DbSet.AsNoTracking()
             .AsEnumerable()
             .Where(predicate);
     }
 
-    public async Task<TEntity> GetAsync(int id)
+    public async Task<TEntity?> GetAsync(int id)
     {
         return await Task.Factory.StartNew(() => Get(id));
     }
@@ -94,7 +93,7 @@ public abstract class EntityRepository<TEntity> : IRepository<TEntity>
         return await Task<IEnumerable<TEntity>>.Factory.StartNew(Get);
     }
 
-    public Task<IEnumerable<TEntity>> GetAsync(Func<TEntity, bool> predicate)
+    public Task<IEnumerable<TEntity>?> GetAsync(Func<TEntity, bool> predicate)
     {
         return Task<IEnumerable<TEntity>>.Factory.StartNew(() => Get(predicate));
     }
@@ -105,11 +104,5 @@ public abstract class EntityRepository<TEntity> : IRepository<TEntity>
 
         if (message != null)
             Logger.LogInformation(message);
-    }
-
-    private void ThrowException(Exception exception, string logMessage)
-    {
-        Logger.LogTrace(exception, logMessage);
-        throw exception;
     }
 }

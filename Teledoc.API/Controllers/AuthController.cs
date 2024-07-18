@@ -13,7 +13,7 @@ public class AuthController : ControllerBase
     [Route("login")]
     public IActionResult Login(string key)
     {
-        if (key.Equals("3911391a-f3e8-4dcf-abda-3556a16a16bb")) //Environment.GetEnvironmentVariable("AUTH_PASSWORD"))
+        if (key.Equals(Environment.GetEnvironmentVariable("AUTH_PASSWORD")))
         {
             var secretKey = new SymmetricSecurityKey("3911391a-f3e8-4dcf-abda-3556a16a16bb"u8.ToArray());
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);

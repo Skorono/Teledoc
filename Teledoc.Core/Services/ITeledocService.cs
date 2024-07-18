@@ -1,20 +1,14 @@
-using Teledoc.DAL.Models;
-
 namespace Teledoc.Core.Services;
 
-public interface ITeledocService
+public interface ITeledocService<T>
 {
-    public Task<IEnumerable<Client>> GetClients();
+    public Task<IEnumerable<T>> Get();
 
-    public Task<IEnumerable<Founder>> GetClientFounders(int id);
+    public Task<T>? GetById(int id);
 
-    public Task<IEnumerable<Founder>> GetClientFounders(Client client);
+    public Task Add(T entity);
 
-    public Task AddClient(Client client);
+    public Task Update(T entity);
 
-    public Task AddClientFounders(int id, IEnumerable<Founder> founders);
-
-    public Task UpdateClient(Client client);
-
-    public Task RemoveClient(Client client);
+    public Task Remove(int id);
 }

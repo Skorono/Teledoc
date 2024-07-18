@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Teledoc.Core.Repositories;
@@ -40,15 +40,20 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-builder.Services.AddTransient<EntityRepository<Client>, TeledocRepository>();
-builder.Services.AddTransient<ITeledocService, TeledocService>();
+builder.Services.AddTransient<EntityRepository<Founder>, FounderRepository>();
+builder.Services.AddTransient<EntityRepository<Client>, ClientsRepository>();
+builder.Services.AddTransient<ServiceBase<Client>, ClientService>();
+builder.Services.AddTransient<ServiceBase<Founder>, FounderService>();
+
 builder.Services.AddDbContext<DbContext, TeledocContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("postgres"));
     options.EnableDetailedErrors();
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
+;
 
 var app = builder.Build();
 

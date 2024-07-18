@@ -15,15 +15,15 @@ public sealed class TeledocContext : DbContext
     {
         modelBuilder.Entity<ClientType>().HasData(new List<ClientType>
         {
-            new() { Id = 1, Name = "ИП" },
-            new() { Id = 2, Name = "ЮЛ" }
+            new() { Id = 1, Name = ClientType.Types.LegalEntity },
+            new() { Id = 2, Name = ClientType.Types.IndividualEntrepreneur }
         });
-        
+
         //Далеко не лучшая идея, тут небольшая зависимость от субд...
         modelBuilder.Entity<Client>()
             .Property(c => c.AddAt)
             .HasDefaultValueSql("NOW()");
-        
+
         modelBuilder.Entity<Client>()
             .Property(c => c.UpdateAt)
             .HasDefaultValueSql("NOW()");
@@ -31,7 +31,7 @@ public sealed class TeledocContext : DbContext
         modelBuilder.Entity<Founder>()
             .Property(f => f.AddAt)
             .HasDefaultValueSql("NOW()");
-        
+
         modelBuilder.Entity<Founder>()
             .Property(f => f.UpdateAt)
             .HasDefaultValueSql("NOW()");

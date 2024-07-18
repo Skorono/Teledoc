@@ -1,13 +1,18 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Teledoc.DAL.Models;
 
+[Index(nameof(Inn), IsUnique = true)]
 public class Founder
 {
-    [RegularExpression("([0-9]*)")] 
-    [Length(10, 12)] 
-    [Key] public string Inn { get; set; } = null!;
+    [Key]
+    public int Id { get; set; }
+    
+    [RegularExpression("([0-9]*)")]
+    [Length(10, 12)]
+    public string Inn { get; set; } = null!;
 
     public string FirstName { get; set; } = null!;
     public string LastName { get; set; } = null!;
@@ -19,5 +24,5 @@ public class Founder
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public DateTime? UpdateAt { get; set; }
 
-    public virtual IEnumerable<Client>? Clients { get; set; }
+    public virtual IEnumerable<Client>? Clients { get; set; } = new List<Client>();
 }
